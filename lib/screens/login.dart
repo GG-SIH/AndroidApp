@@ -1,8 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
+
+import '../widgets/common_styles.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,6 +19,41 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController phoneNumberController = TextEditingController();
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  Future<void> addUser() {
+    return users.add(
+        {
+          'name':"ABC",
+          "age":"25"
+        }
+    ).then((value) => print("User Added"))
+        .catchError((error)=>print("Error "));
+  }
+
+  void authenticate() {
+    String phoneNumber = "+91"+phoneNumberController.text.toString();
+    print(phoneNumber);
+    if(_formKey.currentState!.validate()) {
+      print("validating data");
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: (c) => OTPScreen(phoneNumber: phoneNumber)));
+    } else {
+      print("Error Occurred");
+      CommonStyles.snackBar(context, "Error Occurred!");
+    }
+  }
+
+  @override
+  void dispose() {
+    print("Disposing");
+    phoneNumberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

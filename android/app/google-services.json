@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "583117560262",
+    "project_id": "save-a-life-maps",
+    "storage_bucket": "save-a-life-maps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583117560262:android:60188be8b906bdb8437ac7",
+        "android_client_info": {
+          "package_name": "com.example.save_a_life_maps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583117560262-36fpurmm9dfrdrlkckeu7f44rbjmi8i8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOuqV4e0hVozIz2JplH6r3dG1x0SqOUPA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583117560262-36fpurmm9dfrdrlkckeu7f44rbjmi8i8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
