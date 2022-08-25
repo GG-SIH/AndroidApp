@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "583117560262",
-    "project_id": "save-a-life-maps",
-    "storage_bucket": "save-a-life-maps.appspot.com"
+    "project_number": "557357888417",
+    "project_id": "sal-maps-33701",
+    "storage_bucket": "sal-maps-33701.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:583117560262:android:60188be8b906bdb8437ac7",
+        "mobilesdk_app_id": "1:557357888417:android:633dd04e5319c93d2391e0",
         "android_client_info": {
-          "package_name": "com.example.save_a_life_maps"
+          "package_name": "com.example.sal_maps"
         }
       },
       "oauth_client": [
         {
-          "client_id": "583117560262-36fpurmm9dfrdrlkckeu7f44rbjmi8i8.apps.googleusercontent.com",
+          "client_id": "557357888417-l3a756d20m6ja1steq1polu5cjt17of8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBOuqV4e0hVozIz2JplH6r3dG1x0SqOUPA"
+          "current_key": "AIzaSyBAVrfo2w_nrz1tB1qBudyqPgGGnqlsQzM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "583117560262-36fpurmm9dfrdrlkckeu7f44rbjmi8i8.apps.googleusercontent.com",
+              "client_id": "557357888417-l3a756d20m6ja1steq1polu5cjt17of8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

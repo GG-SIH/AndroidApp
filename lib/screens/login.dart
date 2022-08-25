@@ -6,6 +6,7 @@ import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
 
 import '../widgets/common_styles.dart';
+import 'otpScreen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -38,10 +39,10 @@ class _LoginPageState extends State<LoginPage> {
     print(phoneNumber);
     if(_formKey.currentState!.validate()) {
       print("validating data");
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (c) => OTPScreen(phoneNumber: phoneNumber)));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (c) => OTPScreen(phoneNumber: phoneNumber)));
     } else {
       print("Error Occurred");
       CommonStyles.snackBar(context, "Error Occurred!");
@@ -163,8 +164,10 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
                   onTap: () {
+                    // authenticate();
                     print("Login Tapped");
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=>const MapScreen()));
+                    authenticate();
+                    // Navigator.push(context, MaterialPageRoute(builder: (_)=>const MapScreen()));
                     // authenticate();
                   },
                   child: Container(
