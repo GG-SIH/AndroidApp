@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
+import 'package:sal_maps/screens/mapScreen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: GestureDetector(
                   onTap: () {
                     print("Login Tapped");
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=>EmergencyServices()));
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>const MapScreen()));
                     // authenticate();
                   },
                   child: Container(
