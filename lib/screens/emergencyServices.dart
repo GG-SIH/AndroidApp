@@ -32,12 +32,12 @@ class EmergencyServices extends StatelessWidget {
                     child: Text(
                       'Which Service do you require?',
                       style: TextStyle(
-                        fontSize: 18
+                        fontSize: 20
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(height: 32,),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (_)=>const Ambulance()));
@@ -46,8 +46,8 @@ class EmergencyServices extends StatelessWidget {
                     width: MediaQuery.of(context).size.width*0.8,
                     height: 60,
                     decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(20))
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.all(Radius.circular(12))
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,8 +67,8 @@ class EmergencyServices extends StatelessWidget {
                     width: MediaQuery.of(context).size.width*0.8,
                     height: 60,
                     decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(20))
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.all(Radius.circular(12))
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -84,8 +84,8 @@ class EmergencyServices extends StatelessWidget {
                   width: MediaQuery.of(context).size.width*0.8,
                   height: 60,
                   decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(20))
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.all(Radius.circular(12))
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -106,10 +106,17 @@ class EmergencyServices extends StatelessWidget {
                 Container(
                   child: GestureDetector(
                     child: Container(
-                        child: const Text('Confirm')
+                        child: const Text('')
                     ),
                   ),
                 ),
+                MaterialButton(
+                    // color: Theme.of(context).primaryColor,
+                    color: Colors.cyan,
+                    child: new Text("Confirm"),
+                    splashColor: Colors.black,
+                    onPressed: ()=>{},)
+                    // onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=> NGOPortal()))),
 
               ],
             ),
