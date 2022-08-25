@@ -45,7 +45,6 @@ class _SplashScreenState extends State<SplashScreen> {
           width: MediaQuery.of(context).size.width*0.8,
           decoration: const BoxDecoration(
               image: DecorationImage(image: AssetImage("assets/icon/splash.png")
-
               )
           ),
         ),
