@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class EmergencyServices extends StatelessWidget {
 
   bool ambulanceTapped = false;
@@ -64,7 +63,7 @@ class EmergencyServices extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 48,),
+                const SizedBox(height: 32,),
                 GestureDetector(
                   onTap: () async {
                     final ConfirmAction? action = await await _asyncConfirmDialog(
@@ -92,7 +91,46 @@ class EmergencyServices extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16,),
+                const SizedBox(height: 32,),
+                GestureDetector(
+                  onTap: () async {
+                    final ConfirmAction? action = await await _asyncConfirmDialog(
+                        context,'Ambulance and Fire Brigade');
+                    print("Confirm Action Ambulance and Fire Brigade $action");
+                  },
+                  child: Container(
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 0.8,
+                    height: 160,
+                    decoration: const BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.all(Radius.circular(12))
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset(
+                                'assets/icon/fire.png'
+                            ),
+                            Transform.scale(
+                              scaleX: -1,
+                              child: Image.asset(
+                                  'assets/icon/ambulance.png'
+                              ),
+                            )
+                          ],
+                        ),
+
+                        Text('Ambulance and Fire Brigade',style: TextStyle(fontSize: 24),),
+                      ],
+                    ),
+                  ),
+                ),
 
               ],
             ),
@@ -115,7 +153,7 @@ enum ConfirmAction { Cancel, Accept}
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                    'The Nearest $service will reach to you in :',
+                    'The nearest $service will reach to you in :',
                   style: TextStyle(
                     fontSize: 18
                   ),
@@ -140,7 +178,11 @@ enum ConfirmAction { Cancel, Accept}
               child: const Text('Confirm'),
               onPressed: () {
                 Navigator.of(context).pop(ConfirmAction.Accept);
-                if(service=="Fire Brigade") {
+                if(service=="Ambulance and Fire Brigade"){
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const AmbulanceAndFireService()));
+                }
+                else if(service=="Fire Brigade") {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (_) => const FireService()));
                 } else {
@@ -306,3 +348,75 @@ class FireService extends StatelessWidget {
   }
 }
 
+class AmbulanceAndFireService extends StatelessWidget {
+  const AmbulanceAndFireService({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+      body: SafeArea(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Hang Tight,\nEmergency Services on the way!!',
+                style: TextStyle(
+                    fontSize: 24
+                ),),
+              SizedBox(height: 16,),
+              Container(
+                child: Image.asset('assets/images/eta_screen.png'),
+                padding: EdgeInsets.all(16),
+              ),
+              Container(
+                margin: EdgeInsets.all(16),
+                // padding: EdgeInsets.all(8),
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    color: Colors.green
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    SizedBox(height: 8,),
+                    Text('Ambulance and Fire Brigade are on the way',style: TextStyle(
+                        fontSize: 18
+                    ),),
+                    SizedBox(height: 8,),
+                    Text('ETA: 21 min',style: TextStyle(
+                        fontSize: 18
+                    ),),
+                    SizedBox(height: 8,),
+                    Text('Phone Number: +91 7589643321',style: TextStyle(
+                        fontSize: 18
+                    ),),
+                    SizedBox(height: 8,),
+                    Text('Details:',style: TextStyle(
+                        fontSize: 18
+                    ),),
+                    Text('Fire Brigade No : KA 00 ML 1234',style: TextStyle(
+                        fontSize: 18
+                    ),),
+                    Text('Ambulance No: KA 03 CA 3468',style: TextStyle(
+                        fontSize: 18
+                    ),)// onPresse
+                  ],
+                ),
+              ),
+              MaterialButton(
+                color: Colors.red,
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                child: Text('Cancel'),)
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

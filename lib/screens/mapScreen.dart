@@ -315,7 +315,7 @@ class _MapScreenState extends State<MapScreen> {
               heroTag: 'sos',
               child: Icon(Icons.sos),
             ),
-            SizedBox(width: 250,),
+            SizedBox(width: 240,),
             FloatingActionButton(
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.black,
