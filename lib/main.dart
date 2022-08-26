@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/login.dart';
+import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
+import 'package:sal_maps/screens/mapScreen.dart';
 import 'package:sal_maps/screens/splashScreen.dart';
 
 void main() async {
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: LoginPage(),
       home: SplashScreen(),
+      // home: SignInGoogle(),
+      // home: MapScreen(),
       // home: EmergencyServices(),
     );
   }

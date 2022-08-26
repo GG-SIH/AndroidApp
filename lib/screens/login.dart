@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
+import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
 
 import '../widgets/common_styles.dart';
@@ -65,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Logo
               const Image(
                 image: AssetImage(
                   'assets/icon/sihlogo.png',
@@ -80,13 +82,15 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 10,
               ),
+              // Login
               const Text(
-                'Login',
+                'Login For Emergency Services',
                 style: TextStyle(
                   fontSize: 20,
                 ),
               ),
               const SizedBox(height: 32,),
+              // Phone Number Field
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -179,6 +183,36 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Center(
                         child: Text(
                           "Sign In",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        )
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: GestureDetector(
+                  onTap: () {
+                    // authenticate();
+                    print("Login Tapped");
+                    // authenticate();
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>const SignInGoogle()));
+                    // authenticate();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20.0),
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius: BorderRadius.circular(12)
+                    ),
+                    child: const Center(
+                        child: Text(
+                          "Go back to regular user login",
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
