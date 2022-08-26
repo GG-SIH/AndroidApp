@@ -196,6 +196,9 @@ class _MapScreenState extends State<MapScreen> {
                               color: Colors.black, fontWeight: FontWeight.w300),
                           contentPadding: EdgeInsets.symmetric(vertical: 5),
                         ),
+                        // onTap: () async {
+                        //
+                        // },
                         onChanged: (value) {
                           print(value);
                         },

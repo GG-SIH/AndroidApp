@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // import '../helper/notifications.dart';
+import '../helper/notifications.dart';
 import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,14 +27,14 @@ class _SplashScreenState extends State<SplashScreen> {
             )
         )
     );
-    // setUpNotificationPermissions(context);
-    // notificationCreationStream(context);
-    // notificationActionStream(context);
+    setUpNotificationPermissions(context);
+    notificationCreationStream(context);
+    notificationActionStream(context);
   }
 
   @override
   void dispose() {
-    // disposeNotification();
+    disposeNotification();
     super.dispose();
   }
   @override

@@ -41,6 +41,7 @@ dependencies:
   location: ^4.4.0
   google_fonts: ^3.0.1
   google_sign_in: ^5.4.1
+  uuid: ^3.0.6
   flutter:
     sdk: flutter
 
