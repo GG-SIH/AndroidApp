@@ -78,7 +78,8 @@ class Server {
         "lat": 13.03022,
         "lng": 77.56493
       }
-    ]
+    ],
+    "max_radius": 0.39053223860205466,
   };
   static Future<void> callServer(String polyline) async {
     mp = await DirectionRepository.getServerResponse(polyline);

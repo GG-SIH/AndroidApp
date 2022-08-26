@@ -32,7 +32,7 @@ class _SignInGoogleState extends State<SignInGoogle> {
                     flex: 1,
                     child: Image.asset(
                       'assets/icon/SAL_Maps_Final.png',
-                      height: 360,
+                      height: 250,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -40,7 +40,7 @@ class _SignInGoogleState extends State<SignInGoogle> {
                     'General User Login',
                     style: TextStyle(
                       // color: CustomColors.firebaseYellow,
-                      fontSize: 40,
+                      fontSize: 32,
                     ),
                   ),
                   SizedBox(height: 24,)

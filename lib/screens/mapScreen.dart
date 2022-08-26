@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
+import 'package:sal_maps/screens/searchScreen.dart';
 
 import '../model/directions.dart';
 import '../model/directionsDirectory.dart';
@@ -23,8 +24,8 @@ class _MapScreenState extends State<MapScreen> {
 
   bool _isLoading = true;
 
-  TextEditingController _searchDestinationController = TextEditingController();
-  TextEditingController _searchSourceController = TextEditingController();
+  TextEditingController searchDestinationController = TextEditingController();
+  TextEditingController searchSourceController = TextEditingController();
 
   late Position _currentPosition;
 
@@ -116,9 +117,9 @@ class _MapScreenState extends State<MapScreen> {
     final double lat = place['geometry']['location']['lat'];
     final double lng = place['geometry']['location']['lng'];
 
-    if(_searchSourceController.text.isNotEmpty) {
-      // _origin = await LocationServices().getPlace(_searchDestinationController.text);
-      Map<String, dynamic> sourcePlace= await LocationServices().getPlace(_searchSourceController.text);
+    if(searchSourceController.text.isNotEmpty) {
+      // _origin = await LocationServices().getPlace(searchDestinationController.text);
+      Map<String, dynamic> sourcePlace= await LocationServices().getPlace(searchSourceController.text);
       final double sLat = sourcePlace['geometry']['location']['lat'];
       final double sLng = sourcePlace['geometry']['location']['lng'];
       LatLng sourcePos = new LatLng(sLat, sLng);
@@ -170,13 +171,16 @@ class _MapScreenState extends State<MapScreen> {
                 children: [
                   Expanded(
                       child: TextFormField(
-                        controller: _searchSourceController,
+                        controller: searchSourceController,
                         decoration: const InputDecoration(
                           hintText: "Your Location (Tap to change)",
                           hintStyle: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.w300),
                           contentPadding: EdgeInsets.symmetric(vertical: 5),
                         ),
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>SearchScreen(s: "source",c: searchSourceController,)));
+                        },
                         onChanged: (value) {
                           print(value);
                         },
@@ -189,7 +193,7 @@ class _MapScreenState extends State<MapScreen> {
                 children: [
                   Expanded(
                       child: TextFormField(
-                        controller: _searchDestinationController,
+                        controller: searchDestinationController,
                         decoration: InputDecoration(
                           hintText: "Enter Destination",
                           hintStyle: TextStyle(
@@ -199,6 +203,9 @@ class _MapScreenState extends State<MapScreen> {
                         // onTap: () async {
                         //
                         // },
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=>SearchScreen(s: "destination",c: searchDestinationController,)));
+                        },
                         onChanged: (value) {
                           print(value);
                         },
@@ -209,7 +216,7 @@ class _MapScreenState extends State<MapScreen> {
                         // print("Search Destination tapped");
                         Map<String, dynamic> place =
                         await LocationServices().getPlace(
-                            _searchDestinationController.text);
+                            searchDestinationController.text);
                         // print("Place in search onTAP $place");
                         _goToPlace(place); // camera animate not working cz ur camera updater is something else;
                       },
@@ -258,7 +265,7 @@ class _MapScreenState extends State<MapScreen> {
                   //       _origin = null;
                   //       _destination = null;
                   //       _currentLocation = null;
-                  //       // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: _searchDestinationController.text,)));
+                  //       // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
                   //       Navigator.pushReplacement(context,
                   //           MaterialPageRoute(builder: (_) => EmergencyServices()));
                   //
@@ -276,11 +283,11 @@ class _MapScreenState extends State<MapScreen> {
                         // _origin = null;
                         // _destination = null;
                         // _currentLocation = null;
-                        // // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: _searchDestinationController.text,)));
+                        // // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
                         // Navigator.pushReplacement(context,
                         //     MaterialPageRoute(builder: (_) => EmergencyServices()));
 
-                        CommonStyles.snackBar(context, "Not funtional yet");
+                        CommonStyles.snackBar(context, "Not functional yet");
 
                       },
                       child: Text("Start Driving"),

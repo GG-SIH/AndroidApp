@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
 
 // import '../helper/notifications.dart';
 import '../helper/notifications.dart';
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
             context,
             MaterialPageRoute(
               builder:(context) =>
-                  const LoginPage(),
+                  const SignInGoogle(),
             )
         )
     );

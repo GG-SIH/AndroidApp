@@ -1,19 +1,25 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sal_maps/helper/constants.dart';
 import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
-
+  String s="";
+  TextEditingController controller = TextEditingController();
+  SearchScreen({required String s,required TextEditingController c}) {
+    this.s = s;
+    this.controller = c;
+  }
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  TextEditingController _controller = TextEditingController();
+
+  // TextEditingController _controller = TextEditingController();
   var uuid = Uuid();
   String _sessionToken = "122345";
   List<dynamic> _placeList = [];
@@ -21,7 +27,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    _controller.addListener(() {
+    widget.controller.addListener(() {
       onChange();
     });
   }
@@ -31,7 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
         _sessionToken = uuid.v4();
       });
     }
-    getSuggestion(_controller.text);
+    getSuggestion(widget.controller.text);
   }
 
   void getSuggestion(String input) async {
@@ -40,9 +46,11 @@ class _SearchScreenState extends State<SearchScreen> {
     var response = await http.get(Uri.parse(request));
     var data = response.body.toString();
     if(response.statusCode==200) {
-      setState(() {
-        _placeList = jsonDecode(response.body.toString())['predictions'];
-      });
+       if(mounted) {
+         setState(() {
+           _placeList = jsonDecode(response.body.toString())['predictions'];
+         });
+       }
     } else {
       throw Exception('Failed to load');
     }
@@ -59,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           children: [
             TextFormField(
-              controller: _controller,
+              controller: widget.controller,
               decoration: InputDecoration(
                 hintText: 'Search places with name'
               ),
@@ -69,6 +77,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount: _placeList.length,
                   itemBuilder: (context,index) {
                 return ListTile(
+                  onTap: () {
+                    widget.controller.text = _placeList[index]['description'];
+                    Navigator.pop(context);
+                  },
                   title: Text(_placeList[index]['description']),
                 );
               }

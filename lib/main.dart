@@ -6,6 +6,7 @@ import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
 import 'package:sal_maps/screens/splashScreen.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:sal_maps/screens/tracking.dart';
 
 
 void main() async {
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
       home: SplashScreen(),
       // home: SignInGoogle(),
       // home: MapScreen(),
+      // home: Tracking(),
     );
   }
 }

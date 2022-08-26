@@ -64,8 +64,9 @@ class DirectionRepository {
       final result = jsonDecode(response.body) as Map<String, dynamic>;
       print(result.toString());
       Server.mp = {
-        "dynamic_radius" : result["dynamic_radius"]??"0.0",
+        "dynamic_radius" : result["dynamic_radius"]??"1000.0",
         'immediate_waypoints' : result["immediate_waypoints"]??null,
+        "max_radius" : result["max_radius"]??"1000.0",
       };
       print("done dana done");
       // print(result["result"]);
@@ -102,7 +103,7 @@ class DirectionRepository {
     return mp;
   }
 
-  static Future<bool> userWithinRadius(double cLat,double cLng,int i) async {
+  static Future<Map<String,dynamic>> userWithinRadius(double cLat,double cLng,int i) async {
 
     print("in user within radius function");
 
@@ -128,7 +129,8 @@ class DirectionRepository {
         "lat": iLat,
         "lng": iLng
       },
-      "radius": Server.mp["dynamic_radius"]
+      "radius": Server.mp["dynamic_radius"],
+      "max_radius": Server.mp["max_radius"]
     });
     request.headers.addAll(headers);
 
@@ -138,11 +140,15 @@ class DirectionRepository {
       print("response in fun:"+response.body);
       final result = jsonDecode(response.body) as Map<String, dynamic>;
       print(result.toString());
-      print(result["result"]);
-      return result["result"];
+      print("Green: "+result["green"]+"Yellow: "+result["yellow"]);
+      Map<String,dynamic> nmp = {
+        "green":result["green"],
+        "yellow":result["yellow"],
+      };
+      return nmp;
     } else {
       print(response.reasonPhrase);
-      return false;
+      return {};
     }
 
     // var headers = {

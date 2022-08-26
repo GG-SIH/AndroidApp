@@ -8,7 +8,7 @@ class EmergencyServices extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Select Service"),
+        title: Text("Select Service"),
         centerTitle: true,
       ),
       body: SafeArea(
