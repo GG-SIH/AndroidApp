@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sal_maps/screens/loadingSkeleton.dart';
 class EmergencyServices extends StatelessWidget {
 
   bool ambulanceTapped = false;
@@ -178,16 +179,25 @@ enum ConfirmAction { Cancel, Accept}
               child: const Text('Confirm'),
               onPressed: () {
                 Navigator.of(context).pop(ConfirmAction.Accept);
+
+                // MaterialPageRoute(builder: (_)=>const LoadingSkeleton());
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> LoadingSkeleton( s: 'Ambulance and Fire',)));
+
                 if(service=="Ambulance and Fire Brigade"){
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const AmbulanceAndFireService()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (_) => const AmbulanceAndFireService()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> LoadingSkeleton( s: 'Ambulance and Fire Brigade',)));
+
                 }
                 else if(service=="Fire Brigade") {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const FireService()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (_) => const FireService()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> LoadingSkeleton( s: 'Fire Brigade',)));
+
                 } else {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const Ambulance()));
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (_) => const Ambulance()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> LoadingSkeleton( s: 'Ambulance',)));
                 }
               },
             )
