@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/searchScreen.dart';
+import 'package:sal_maps/screens/tracking.dart';
 
 import '../model/directions.dart';
 import '../model/directionsDirectory.dart';
@@ -286,11 +287,12 @@ class _MapScreenState extends State<MapScreen> {
                         // // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
                         // Navigator.pushReplacement(context,
                         //     MaterialPageRoute(builder: (_) => EmergencyServices()));
-
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Tracking()));
                         CommonStyles.snackBar(context, "Not functional yet");
 
                       },
-                      child: Text("Start Driving"),
+                      child: Text("Start"),
                     ),
                   ),
                 ],

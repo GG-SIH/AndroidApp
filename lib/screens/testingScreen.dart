@@ -42,12 +42,6 @@ class _TestingPageState extends State<TestingPage> {
             onTap: () {
               print('Testing Screen Button Presses');
               createNotification();
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (_) => EmergencyServices()
-              //     )
-              // );
             },
             child: Container(
               alignment: Alignment.center,

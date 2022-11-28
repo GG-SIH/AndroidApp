@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
@@ -75,7 +76,7 @@ class _OTPScreenState extends State<OTPScreen> {
     }
     FirebaseAuth auth=FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
-        phoneNumber: "${widget.phoneNumber}",
+        phoneNumber: widget.phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           await auth.signInWithCredential(credential).then((value) => {
             if(value.user!=null) {
@@ -113,7 +114,7 @@ class _OTPScreenState extends State<OTPScreen> {
             });
           }}
           ,
-      timeout: Duration(seconds: 30),//TODO :Duration value
+      timeout: const Duration(seconds: 30),//TODO :Duration value
     );
   }
 
@@ -150,11 +151,15 @@ class _OTPScreenState extends State<OTPScreen> {
           smsCode: otp))
           .then((value) {
             if(value.user != null) {
-              print("Logged In Success");
+              if (kDebugMode) {
+                print("Logged In Success");
+              }
               // TODO: Push->PushReplacement
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MapScreen()));
             } else {
-              print("Not Logged In Sorry");
+              if (kDebugMode) {
+                print("Not Logged In Sorry");
+              }
             }
       });
 

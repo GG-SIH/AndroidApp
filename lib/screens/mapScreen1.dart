@@ -266,7 +266,7 @@ class _MapScreenState extends State<MapScreen> {
                     }
                   });
                 },
-                child: Text("Start Driving"),
+                child: Text("Start"),
               ),
             ),
           ],

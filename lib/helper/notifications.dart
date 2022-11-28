@@ -50,8 +50,8 @@ Future<void> createNotification() async {
       content: NotificationContent(
           id: createUniqueId(),
           channelKey: 'basic_channel',
-        title: 'Notification Title',
-        body: 'Take the required direction',
+        title: 'Emergency service on the way',
+        body: 'Please move to the left <-|',
         notificationLayout: NotificationLayout.BigText,
         // bigPicture: 'asset://assets/icon/sihlogo.png'
       )

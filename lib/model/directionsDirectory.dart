@@ -102,7 +102,21 @@ class DirectionRepository {
     // return null;
     return mp;
   }
+  static Future<bool> checkNow() async {
+    var request = http.Request('GET', Uri.parse('https://flutter-server.azurewebsites.net/requestAmbulance'));
 
+    var streamedResponse = await request.send();
+    var response = await http.Response.fromStream(streamedResponse);
+    if(response.statusCode == 200) {
+      print("response in fun checkNow() : " + response.body);
+      bool x = response.body.toString()=="true";
+      return x;
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
+
+  }
   static Future<Map<String,dynamic>> userWithinRadius(double cLat,double cLng,int i) async {
 
     print("in user within radius function");
@@ -140,7 +154,7 @@ class DirectionRepository {
       print("response in fun:"+response.body);
       final result = jsonDecode(response.body) as Map<String, dynamic>;
       print(result.toString());
-      print("Green: "+result["green"]+"Yellow: "+result["yellow"]);
+      print("Green: "+result["green"].toString()+"Yellow: "+result["yellow"].toString());
       Map<String,dynamic> nmp = {
         "green":result["green"],
         "yellow":result["yellow"],

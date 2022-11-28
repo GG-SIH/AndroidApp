@@ -21,13 +21,15 @@ class Tracking extends StatefulWidget {
 
 class _TrackingState extends State<Tracking> {
   final Completer<GoogleMapController> _controller = Completer();
-  bool _notify = false;
+  bool _notifyYellow = false;
+  bool _notifyGreen = false;
+  // bool _playingAudio = false;
 
   TextEditingController _searchDestinationController = new TextEditingController();
   TextEditingController _searchSourceController = new TextEditingController();
 
-  static LatLng sourceLocation = LatLng(13.0306 , 77.5649);
-  static LatLng destinationLocation = LatLng(12.9237, 77.4987);
+  static LatLng sourceLocation = LatLng(13.0328 , 77.5731);
+  static LatLng destinationLocation = LatLng(12.9764, 77.5929);
   static const LatLng iiitGwaliorLocation = LatLng(26.2495, 78.1741);
 
   List<LatLng> polylineCoordinates = [];
@@ -63,9 +65,23 @@ class _TrackingState extends State<Tracking> {
     GoogleMapController googleMapController = await _controller.future;
     location.onLocationChanged.listen((event) async {
       print("Listening location change");
-      _notify = await _startChecking();
-      if(_notify) {
-        createNotification();
+      await _startChecking();
+      if(_notifyGreen) {
+        // if(!_playingAudio) {
+          createNotification();
+          // _playingAudio = true;
+          // if(mounted) {
+          //   setState(() {
+          //     _playingAudio = true;
+          //   });
+          // }
+        // }
+      } else if(_notifyYellow) {
+        // _playingAudio = false;
+        // setState(() {
+        //   _playingAudio = false;
+        // });
+        // final assetsAudioPlayer = AssetsAudioPLayer();
       }
       currentLocation = event;
       googleMapController.animateCamera(
@@ -83,20 +99,49 @@ class _TrackingState extends State<Tracking> {
       }
     });
   }
-
-  Future<bool> _startChecking() async {
+  bool x = false;
+  Future<void> _startChecking() async {
     // await Server.callServer("k_pnA_llxMn@DPCFKN{DASGC_@CeCMMBEFAPAf@Q?a@?ID@B@DKpBqAIGfAIrAMrBlALxFb@`AFKv@ATEtA?JpCp@jCl@|@RRJJTe@N[NMJMVvCz@vBp@rGpB|FlBfBj@xCx@lAXdD~@|Bn@hBb@jBf@jD~@c@j@|Bp@^JZOLOt@]NZTVpDxAl@Zh@ZPRLNt@`Ah@l@n@j@v@T~@N~@Bh@DB@BFp@D`@LVJDl@Bz@BHfAGxAKn@M|@e@REd@Az@ARTDP?ZMVWZOJ?^@PpAjDtArDpArCZp@JGDC?IKUUo@@[Z]PGp@Q~@AXBN@vCWHBN`AaBN");
     // double cLat = 13.01454;
     double cLat = currentLocation!.latitude!;
     // double cLng = 77.57093;
     double cLng = currentLocation!.longitude!;
-    Map<String,dynamic> mp1 = await DirectionRepository.userWithinRadius(cLat, cLng, 0);
-    Map<String,dynamic> mp2 = await DirectionRepository.userWithinRadius(cLat, cLng, 1);
-    Map<String,dynamic> mp3 = await DirectionRepository.userWithinRadius(cLat, cLng, 1);
-    Map<String,dynamic> mp4 = await DirectionRepository.userWithinRadius(cLat, cLng, 1);
+    if(!x) {
+      Map<String, dynamic> mp1 = await DirectionRepository.userWithinRadius(
+          cLat, cLng, 0);
+      Map<String, dynamic> mp2 = await DirectionRepository.userWithinRadius(
+          cLat, cLng, 1);
+      if(mp1["yellow"] && !mp1["green"] || mp2["yellow"] && !mp2["green"]) {
+        _notifyYellow = true;
+        _notifyGreen = false;
+        setState(() {
+          _notifyYellow = true;
+          _notifyGreen = false;
+        });
+        // TODO : ADD audio and light purple
+      }
+      if(mp1["green"] || mp2["green"]) {
+        // TODO: dark purple
+        _notifyGreen = true;
+        _notifyYellow = false;
+        setState(() {
+          _notifyGreen = true;
+          _notifyYellow = false;
+        });
+      }
+    }
+    x = await DirectionRepository.checkNow();
+    if(x) {
+      _notifyGreen = true;
+      setState(() {
+        _notifyGreen = true;
+      });
+    }
+
+
+
     // print("check:"+mp.toString());
     // print("check:"+mp1.toString());
-    return true;
 
   }
 
@@ -235,49 +280,50 @@ class _TrackingState extends State<Tracking> {
                             polylineId: PolylineId("route"),
                             points: polylineCoordinates,
                             color: Colors.black,
+                            // color: (_notifyGreen)?Colors.green:(_notifyYellow)?Colors.yellow:Colors.blue,
                             width: 6)
                       },
                     ),
                   ),
-                  Container(
-                    child: AnimatedPositioned(
-                        curve: Curves.easeInOut,
-                        duration: Duration(milliseconds: 200),
-                        left: 0,
-                        // bottom: 0,
-                        // bottom: -(height/3)+100,
-                        bottom: !showBottomInfo ? 0 : -(height / 3) + 90,
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                                onTap: () async {
-                                  print("Tapped");
-
-                                  bool x= await _startChecking();
-                                  print("tracking x="+x.toString());
-                                  // showBottomInfo = !showBottomInfo;
-                                  // setState(() {
-                                  //   showBottomInfo = !showBottomInfo;
-                                  // });
-                                },
-                                // onPanEnd: (details) {
-                                //   if(details.velocity.pixelsPerSecond.dy>threshold) {
-                                //     print(showBottomInfo);
-                                //     this.setState(() {
-                                //       showBottomInfo = false;
-                                //     });
-                                //   } else if(details.velocity.pixelsPerSecond.dy < -threshold) {
-                                //     this.setState(() {
-                                //       showBottomInfo = true;
-                                //     });
-                                //   }
-                                // },
-                                child: Container(
-                                    child: Icon(Icons.arrow_drop_up,size: 24,))),
-                            DrivingInfo(),
-                          ],
-                        )),
-                  ),
+                  // Container(
+                  //   child: AnimatedPositioned(
+                  //       curve: Curves.easeInOut,
+                  //       duration: Duration(milliseconds: 200),
+                  //       left: 0,
+                  //       // bottom: 0,
+                  //       // bottom: -(height/3)+100,
+                  //       bottom: !showBottomInfo ? 0 : -(height / 3) + 90,
+                  //       child: Column(
+                  //         children: [
+                  //           GestureDetector(
+                  //               onTap: () async {
+                  //                 print("Tapped");
+                  //
+                  //                 await _startChecking();
+                  //                 // print("tracking x="+x.toString());
+                  //                 // showBottomInfo = !showBottomInfo;
+                  //                 // setState(() {
+                  //                 //   showBottomInfo = !showBottomInfo;
+                  //                 // });
+                  //               },
+                  //               // onPanEnd: (details) {
+                  //               //   if(details.velocity.pixelsPerSecond.dy>threshold) {
+                  //               //     print(showBottomInfo);
+                  //               //     this.setState(() {
+                  //               //       showBottomInfo = false;
+                  //               //     });
+                  //               //   } else if(details.velocity.pixelsPerSecond.dy < -threshold) {
+                  //               //     this.setState(() {
+                  //               //       showBottomInfo = true;
+                  //               //     });
+                  //               //   }
+                  //               // },
+                  //               child: Container(
+                  //                   child: Icon(Icons.arrow_drop_up,size: 24,))),
+                  //           DrivingInfo(),
+                  //         ],
+                  //       )),
+                  // ),
                 ],
               ),
       ),
