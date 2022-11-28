@@ -19,13 +19,13 @@ class newEmergencyRequest extends StatelessWidget {
 
   showAlertDialog(BuildContext context) {
     // set up the buttons
-    Widget cancelButton = FlatButton(
+    Widget cancelButton = MaterialButton(
       child: Text("Cancel"),
       onPressed:  () {
         Navigator.pop(context);
       },
     );
-    Widget continueButton = FlatButton(
+    Widget continueButton = MaterialButton(
       child: Text("Confirm"),
       onPressed:  () {
         Navigator.push(context, MaterialPageRoute(builder: (_)=> Tracking()));

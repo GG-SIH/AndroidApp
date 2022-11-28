@@ -15,7 +15,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   AwesomeNotifications().initialize(
-      'resource://drawable/res_notification_app_icons',
+      'resource://drawable/res_notification_app_icon',
       [
         NotificationChannel(
           channelKey: 'basic_channel',
@@ -25,6 +25,7 @@ void main() async {
           importance: NotificationImportance.High,
           channelShowBadge: true,
           playSound: true,
+          enableVibration: true,
           soundSource: 'resource://raw/res_custom_notification',
         )
       ]
@@ -62,8 +63,8 @@ class MyApp extends StatelessWidget {
       // home: SignInGoogle(),
       // home: MapScreen(),
       // home: Tracking(),
-      // home: TestingPage(),
-      home: SplashScreen(),
+      home: TestingPage(),
+      // home: SplashScreen(),
     );
   }
 }

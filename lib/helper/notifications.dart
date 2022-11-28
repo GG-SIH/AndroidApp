@@ -1,4 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sal_maps/helper/utilities.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
@@ -6,16 +7,18 @@ import 'package:sal_maps/screens/mapScreen.dart';
 void setUpNotificationPermissions(BuildContext context) {
   AwesomeNotifications().isNotificationAllowed().then( (isAllowed) {
     if(!isAllowed) {
-      print("Notification not Allowed asking for permission");
+      if (kDebugMode) {
+        print("Notification not Allowed asking for permission");
+      }
       showDialog(context: context, builder: (context) => AlertDialog(
-        title: Text('Allow Notifications'),
-        content: Text('Our app would send you notifications !'),
+        title: const Text('Allow Notifications'),
+        content: const Text('Our app would send you notifications !'),
         actions: [
           TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text(
+              child: const Text(
                 'Don\'t Allow',
                 style: TextStyle(
                   color: Colors.grey,
@@ -27,7 +30,7 @@ void setUpNotificationPermissions(BuildContext context) {
                 AwesomeNotifications()
                     .requestPermissionToSendNotifications().then((_) => Navigator.pop(context));
               },
-              child: Text(
+              child: const Text(
                 'Allow',
                 style: TextStyle(
                     color: Colors.teal,
@@ -40,7 +43,9 @@ void setUpNotificationPermissions(BuildContext context) {
       ),
       );
     } else {
-      print("Notification Allowed!!");
+      if (kDebugMode) {
+        print("Notification Allowed!!");
+      }
     }
   }).asStream().asBroadcastStream();
 }
