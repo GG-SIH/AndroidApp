@@ -5,23 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
+import 'package:sal_maps/screens/newEmergencyRequest.dart';
 import 'package:sal_maps/screens/searchScreen.dart';
-import 'package:sal_maps/screens/tracking.dart';
 
 import '../model/directions.dart';
 import '../model/directionsDirectory.dart';
 import '../services/getCurrentLocation.dart';
 import '../services/location_services.dart';
 import '../widgets/common_styles.dart';
+import 'tracking.dart';
 
-class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+class MapScreenESP extends StatefulWidget {
+  const MapScreenESP({Key? key}) : super(key: key);
 
   @override
-  _MapScreenState createState() => _MapScreenState();
+  State<MapScreenESP> createState() => _MapScreenESPState();
 }
 
-class _MapScreenState extends State<MapScreen> {
+class _MapScreenESPState extends State<MapScreenESP> {
 
   bool _isLoading = true;
 
@@ -156,6 +157,40 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    showAlertDialog(BuildContext context) {
+      // set up the buttons
+      Widget cancelButton = FlatButton(
+        child: Text("Cancel"),
+        onPressed:  () {
+          Navigator.pop(context);
+        },
+      );
+      Widget continueButton = FlatButton(
+        child: Text("Confirm"),
+        onPressed:  () {
+          Navigator.push(context, MaterialPageRoute(builder: (_)=> Tracking()));
+        },
+      );
+      // set up the AlertDialog
+      AlertDialog alert = AlertDialog(
+        title: Text("Emergency Request"),
+        content: Text("There is a user in distress who requires assistance, please confirm your availability for dispatch"),
+        actions: [
+          cancelButton,
+          continueButton,
+        ],
+      );
+      // show the dialog
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+
+
     return Scaffold(
       // appBar: AppBar(
       //   title: Text("Save A Life Maps"),
@@ -287,12 +322,13 @@ class _MapScreenState extends State<MapScreen> {
                         // // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
                         // Navigator.pushReplacement(context,
                         //     MaterialPageRoute(builder: (_) => EmergencyServices()));
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Tracking()));
+
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=>Tracking()));
                         CommonStyles.snackBar(context, "Not functional yet");
 
                       },
-                      child: Text("Start"),
+                      child: Text("Start",
+                              style: TextStyle(color: Colors.white),),
                     ),
                   ),
                 ],
@@ -311,11 +347,12 @@ class _MapScreenState extends State<MapScreen> {
             FloatingActionButton(
               backgroundColor: Colors.red,
               foregroundColor: Colors.black,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>EmergencyServices()));
+              onPressed: (){
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=>newEmergencyRequest()))
+                showAlertDialog(context);
               },
               heroTag: 'sos',
-              child: Icon(Icons.sos),
+              child: Icon(Icons.add_alert),
             ),
             SizedBox(width: 240,),
             FloatingActionButton(
@@ -340,6 +377,9 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ),
       // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+
     );
+
   }
+
 }
