@@ -26,8 +26,19 @@ void main() async {
           channelShowBadge: true,
           playSound: true,
           enableVibration: true,
-          soundSource: 'resource://raw/res_custom_notification',
-        )
+          soundSource: 'resource://raw/res_custom_notification_make_way',
+        ),
+        NotificationChannel(
+          channelKey: 'basic_channel_2',
+          channelName: 'While Driving Notification',
+          channelDescription: 'Basic Notifications while driving Required!!',
+          defaultColor: Colors.blue,
+          importance: NotificationImportance.High,
+          channelShowBadge: true,
+          playSound: true,
+          enableVibration: true,
+          soundSource: 'resource://raw/res_custom_notification_get_ready',
+        ),
       ]
   );
   // await playLocalAsset();
@@ -63,8 +74,8 @@ class MyApp extends StatelessWidget {
       // home: SignInGoogle(),
       // home: MapScreen(),
       // home: Tracking(),
-      home: TestingPage(),
-      // home: SplashScreen(),
+      // home: TestingPage(),
+      home: SplashScreen(),
     );
   }
 }

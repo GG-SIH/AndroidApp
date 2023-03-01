@@ -50,13 +50,25 @@ void setUpNotificationPermissions(BuildContext context) {
   }).asStream().asBroadcastStream();
 }
 
-Future<void> createNotification() async {
+Future<void> createNotificationMakeWay() async {
   await AwesomeNotifications().createNotification(
       content: NotificationContent(
           id: createUniqueId(),
           channelKey: 'basic_channel',
         title: 'Emergency service on the way',
         body: 'Please move to the left <-|',
+        notificationLayout: NotificationLayout.BigText,
+        // bigPicture: 'asset://assets/icon/sihlogo.png'
+      )
+  );
+}
+Future<void> createNotificationGetReady() async {
+  await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: createUniqueId(),
+        channelKey: 'basic_channel_2',
+        title: 'Emergency service on the way',
+        body: 'Please get ready to move to the left <-|',
         notificationLayout: NotificationLayout.BigText,
         // bigPicture: 'asset://assets/icon/sihlogo.png'
       )

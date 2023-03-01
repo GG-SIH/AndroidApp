@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     print(phoneNumber);
     if(_formKey.currentState!.validate()) {
       print("validating data");
-      Navigator.push(
+      Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (c) => OTPScreen(phoneNumber: phoneNumber)));

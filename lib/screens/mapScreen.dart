@@ -281,15 +281,19 @@ class _MapScreenState extends State<MapScreen> {
                     child: MaterialButton(
                       color: Colors.blue,
                       onPressed: () {
+                        print("Hi");
                         // _origin = null;
                         // _destination = null;
                         // _currentLocation = null;
                         // // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
                         // Navigator.pushReplacement(context,
                         //     MaterialPageRoute(builder: (_) => EmergencyServices()));
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Tracking()));
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (_) => Tracking()));
                         CommonStyles.snackBar(context, "Not functional yet");
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Not functional Yet!!'))
+                        );
 
                       },
                       child: Text("Start"),
@@ -317,7 +321,7 @@ class _MapScreenState extends State<MapScreen> {
               heroTag: 'sos',
               child: Icon(Icons.sos),
             ),
-            SizedBox(width: 240,),
+            const SizedBox(width: 200,),
             FloatingActionButton(
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.black,

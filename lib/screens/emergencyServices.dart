@@ -12,128 +12,130 @@ class EmergencyServices extends StatelessWidget {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8,),
-                Container(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            height: MediaQuery
+                .of(context)
+                .size
+                .height,
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8,),
+                  Container(
 
-                  child: const Center(
-                    child: Text(
-                      'Which Service do you require?',
-                      style: TextStyle(
-                          fontSize: 20
+                    child: const Center(
+                      child: Text(
+                        'Which Service do you require?',
+                        style: TextStyle(
+                            fontSize: 20
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 32,),
-                GestureDetector(
-                  onTap: () async {
+                  const SizedBox(height: 32,),
+                  GestureDetector(
+                    onTap: () async {
 
-                    final ConfirmAction? action = await await _asyncConfirmDialog(
-                        context,'Ambulance');
-                    print("Confirm Action Ambulance $action");
-                  },
-                  child: Container(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.8,
-                    height: 160,
-                    decoration: const BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.all(Radius.circular(12))
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                        'assets/icon/ambulance.png'
-                        ),
-                        Text('Ambulance',style: TextStyle(fontSize: 24),),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32,),
-                GestureDetector(
-                  onTap: () async {
-                    final ConfirmAction? action = await await _asyncConfirmDialog(
-                        context,'Fire Brigade');
-                    print("Confirm Action Fire $action");
-                  },
-                  child: Container(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.8,
-                    height: 160,
-                    decoration: const BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.all(Radius.circular(12))
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                            'assets/icon/fire.png'
-                        ),
-                        Text('Fire Brigade',style: TextStyle(fontSize: 24),),
-                      ],
+                      final ConfirmAction? action = await await _asyncConfirmDialog(
+                          context,'Ambulance');
+                      print("Confirm Action Ambulance $action");
+                    },
+                    child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.8,
+                      height: 160,
+                      decoration: const BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                          'assets/icon/ambulance.png'
+                          ),
+                          Text('Ambulance',style: TextStyle(fontSize: 24),),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 32,),
-                GestureDetector(
-                  onTap: () async {
-                    final ConfirmAction? action = await await _asyncConfirmDialog(
-                        context,'Ambulance and Fire Brigade');
-                    print("Confirm Action Ambulance and Fire Brigade $action");
-                  },
-                  child: Container(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.8,
-                    height: 160,
-                    decoration: const BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.all(Radius.circular(12))
+                  const SizedBox(height: 32,),
+                  GestureDetector(
+                    onTap: () async {
+                      final ConfirmAction? action = await await _asyncConfirmDialog(
+                          context,'Fire Brigade');
+                      print("Confirm Action Fire $action");
+                    },
+                    child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.8,
+                      height: 160,
+                      decoration: const BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                              'assets/icon/fire.png'
+                          ),
+                          Text('Fire Brigade',style: TextStyle(fontSize: 24),),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset(
-                                'assets/icon/fire.png'
-                            ),
-                            Transform.scale(
-                              scaleX: -1,
-                              child: Image.asset(
-                                  'assets/icon/ambulance.png'
+                  ),
+                  const SizedBox(height: 32,),
+                  GestureDetector(
+                    onTap: () async {
+                      final ConfirmAction? action = await await _asyncConfirmDialog(
+                          context,'Ambulance and Fire Brigade');
+                      print("Confirm Action Ambulance and Fire Brigade $action");
+                    },
+                    child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.8,
+                      height: 160,
+                      decoration: const BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.all(Radius.circular(12))
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Image.asset(
+                                  'assets/icon/fire.png'
                               ),
-                            )
-                          ],
-                        ),
+                              Transform.scale(
+                                scaleX: -1,
+                                child: Image.asset(
+                                    'assets/icon/ambulance.png'
+                                ),
+                              )
+                            ],
+                          ),
 
-                        Text('Ambulance and Fire Brigade',style: TextStyle(fontSize: 24),),
-                      ],
+                          Text('Ambulance and Fire Brigade',style: TextStyle(fontSize: 24),),
+                        ],
+                      ),
                     ),
                   ),
-                ),
 
-              ],
+                ],
+              ),
             ),
           ),
         ),

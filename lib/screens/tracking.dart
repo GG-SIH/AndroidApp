@@ -68,7 +68,7 @@ class _TrackingState extends State<Tracking> {
       await _startChecking();
       if(_notifyGreen) {
         // if(!_playingAudio) {
-          createNotification();
+          createNotificationMakeWay();
           // _playingAudio = true;
           // if(mounted) {
           //   setState(() {

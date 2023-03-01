@@ -32,28 +32,60 @@ class _TestingPageState extends State<TestingPage> {
       appBar: AppBar(
          title: const Text('Testing'),
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(24),
-          width: 150,
-          height: 40,
-          decoration: const BoxDecoration(
-            color: Colors.black,
-          ),
-          child: GestureDetector(
-            onTap: () async {
-              if (kDebugMode) {
-                print('Testing Screen Button Presses');
-              }
-              await createNotification().then((value) => print("Done Noti"));
-              // await playLocalAsset();
-            },
-            child: Container(
-              alignment: Alignment.center,
-              child: const Text('Do not press it !!',style: TextStyle(
-                color: Colors.white
-              ),),
-            ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.all(24),
+                width: 150,
+                height: 40,
+                decoration: const BoxDecoration(color: Colors.black),
+                child: GestureDetector(
+                  onTap: () async {
+                    if (kDebugMode) {
+                      print('Testing Screen Button Presses');
+                    }
+                    await createNotificationMakeWay()
+                        .then((value) => print("Done Noti"));
+                    // await playLocalAsset();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Do not press it !!',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Container(
+                margin: const EdgeInsets.all(24),
+                width: 150,
+                height: 40,
+                decoration: BoxDecoration(color: Colors.black),
+                child: GestureDetector(
+                  onTap: () async {
+                    if (kDebugMode) {
+                      print('Testing Screen Button Presses');
+                    }
+                    await createNotificationGetReady()
+                        .then((value) => print("Done Noti"));
+                    // await playLocalAsset();
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Do not press it !!',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

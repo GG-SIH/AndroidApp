@@ -153,7 +153,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     if(_notify) {
-      createNotification();
+      createNotificationMakeWay();
     }
     return Scaffold(
       appBar: AppBar(
