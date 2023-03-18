@@ -74,8 +74,8 @@ class MyApp extends StatelessWidget {
       // home: SignInGoogle(),
       // home: MapScreen(),
       // home: Tracking(),
-      // home: TestingPage(),
-      home: SplashScreen(),
+      home: TestingPage(),
+      // home: SplashScreen(),
     );
   }
 }

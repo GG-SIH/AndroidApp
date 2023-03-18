@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sal_maps/screens/tracking.dart';
 
 import '../helper/notifications.dart';
 import '../model/directions.dart';
@@ -157,13 +158,13 @@ class _MapScreenState extends State<MapScreen> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text("Save A Life Maps"),
+        title: const Text("Save A Life Maps"),
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Container(
-        padding: EdgeInsets.all(8),
-        margin: EdgeInsets.all(1),
+        padding: const EdgeInsets.all(8),
+        margin: const EdgeInsets.all(1),
         child: Column(
           children: [
             Row(
@@ -171,7 +172,7 @@ class _MapScreenState extends State<MapScreen> {
                 Expanded(
                     child: TextFormField(
                       controller: _searchSourceController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Your Location",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w300),
@@ -190,7 +191,7 @@ class _MapScreenState extends State<MapScreen> {
                 Expanded(
                     child: TextFormField(
                       controller: _searchDestinationController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Enter Destination",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w300),
@@ -210,7 +211,7 @@ class _MapScreenState extends State<MapScreen> {
                       // print("Place in search onTAP $place");
                       _goToPlace(place); // camera animate not working cz ur camera updater is something else;
                     },
-                    icon: Icon(Icons.search))
+                    icon: const Icon(Icons.search))
               ],
             ),
             Expanded(
@@ -250,23 +251,23 @@ class _MapScreenState extends State<MapScreen> {
                   _destination = null;
                   _currentLocation = null;
                   // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: _searchDestinationController.text,)));
-                  // Navigator.pushReplacement(context,
-                  //     MaterialPageRoute(builder: (_) => Tracking()));
-                  _startChecking().then((value){
-                    if(value) {
-                      _notify = true;
-                      setState(() {
-                        _notify = true;
-                      });
-                    } else {
-                      _notify = false;
-                      setState(() {
-                        _notify = false;
-                      });
-                    }
-                  });
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const Tracking()));
+                  // _startChecking().then((value){
+                  //   if(value) {
+                  //     _notify = true;
+                  //     setState(() {
+                  //       _notify = true;
+                  //     });
+                  //   } else {
+                  //     _notify = false;
+                  //     setState(() {
+                  //       _notify = false;
+                  //     });
+                  //   }
+                  // });
                 },
-                child: Text("Start"),
+                child: const Text("Start"),
               ),
             ),
           ],
@@ -284,7 +285,6 @@ class _MapScreenState extends State<MapScreen> {
           //   target: LatLng(_currentPosition.latitude,_currentPosition.longitude),
           //   zoom: 14,
           // )),
-
         ),
         child: const Icon(Icons.my_location),
       ),
