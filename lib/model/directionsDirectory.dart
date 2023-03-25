@@ -115,7 +115,6 @@ class DirectionRepository {
       print(response.reasonPhrase);
       return false;
     }
-
   }
   static Future<Map<String,dynamic>> userWithinRadius(double cLat,double cLng,int i) async {
 

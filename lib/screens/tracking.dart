@@ -82,6 +82,7 @@ class _TrackingState extends State<Tracking> {
         //   _playingAudio = false;
         // });
         // final assetsAudioPlayer = AssetsAudioPLayer();
+        createNotificationGetReady();
       }
       currentLocation = event;
       googleMapController.animateCamera(
@@ -103,7 +104,7 @@ class _TrackingState extends State<Tracking> {
   Future<void> _startChecking() async {
     // await Server.callServer("k_pnA_llxMn@DPCFKN{DASGC_@CeCMMBEFAPAf@Q?a@?ID@B@DKpBqAIGfAIrAMrBlALxFb@`AFKv@ATEtA?JpCp@jCl@|@RRJJTe@N[NMJMVvCz@vBp@rGpB|FlBfBj@xCx@lAXdD~@|Bn@hBb@jBf@jD~@c@j@|Bp@^JZOLOt@]NZTVpDxAl@Zh@ZPRLNt@`Ah@l@n@j@v@T~@N~@Bh@DB@BFp@D`@LVJDl@Bz@BHfAGxAKn@M|@e@REd@Az@ARTDP?ZMVWZOJ?^@PpAjDtArDpArCZp@JGDC?IKUUo@@[Z]PGp@Q~@AXBN@vCWHBN`AaBN");
     // double cLat = 13.01454;
-    double cLat = currentLocation!.latitude!;
+    double cLat = currentLocation!.latitude!; // to be ambulances thing
     // double cLng = 77.57093;
     double cLng = currentLocation!.longitude!;
     if(!x) {

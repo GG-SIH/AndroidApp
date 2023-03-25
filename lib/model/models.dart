@@ -10,3 +10,7 @@ class DriverData {
   Directions? info;
 
 }
+
+class User {
+
+}

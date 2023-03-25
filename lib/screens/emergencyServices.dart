@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sal_maps/screens/loadingSkeleton.dart';
+
+import '../model/request.dart';
 class EmergencyServices extends StatelessWidget {
 
   bool ambulanceTapped = false;
@@ -144,6 +146,7 @@ class EmergencyServices extends StatelessWidget {
   }
 }
 enum ConfirmAction { Cancel, Accept}
+
   Future<Future<ConfirmAction?>> _asyncConfirmDialog(BuildContext context,String service) async {
     return showDialog<ConfirmAction>(
       context: context,
@@ -199,6 +202,7 @@ enum ConfirmAction { Cancel, Accept}
                 } else {
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (_) => const Ambulance()));
+                  RequestService.requestService('Ambulance');
                   Navigator.push(context, MaterialPageRoute(builder: (_)=> LoadingSkeleton( s: 'Ambulance',)));
                 }
               },

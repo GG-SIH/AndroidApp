@@ -334,7 +334,6 @@ class _MapScreenState extends State<MapScreen> {
                 //   target: LatLng(_currentPosition.latitude,_currentPosition.longitude),
                 //   zoom: 14,
                 // )),
-
               ),
               heroTag: 'loc',
               child: Icon(Icons.my_location),

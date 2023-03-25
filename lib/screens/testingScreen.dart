@@ -99,10 +99,10 @@ class _TestingPageState extends State<TestingPage> {
                   onTap: () async {
                     print('3rd testing btn');
                     // await Server.callServer("k_pnA_llxMn@DPCFKN{DASGC_@CeCMMBEFAPAf@Q?a@?ID@B@DKpBqAIGfAIrAMrBlALxFb@`AFKv@ATEtA?JpCp@jCl@|@RRJJTe@N[NMJMVvCz@vBp@rGpB|FlBfBj@xCx@lAXdD~@|Bn@hBb@jBf@jD~@c@j@|Bp@^JZOLOt@]NZTVpDxAl@Zh@ZPRLNt@`Ah@l@n@j@v@T~@N~@Bh@DB@BFp@D`@LVJDl@Bz@BHfAGxAKn@M|@e@REd@Az@ARTDP?ZMVWZOJ?^@PpAjDtArDpArCZp@JGDC?IKUUo@@[Z]PGp@Q~@AXBN@vCWHBN`AaBN");
-                    await Server.callServer("aeonA}~mxMex@|h@");
+                    await Server.callServer("aeonA}~mxMex@|h@"); // users polyline object
                     // double cLat = 13.01454;
                     // double cLng = 77.57093;
-                    double cLat1 = 13.0336;
+                    double cLat1 = 13.0336; // ambulances location here
                     double cLng1 = 77.5688;
                     var mp = await DirectionRepository.userWithinRadius(cLat1, cLng1, 0);
                     var mp1 = await DirectionRepository.userWithinRadius(cLat1, cLng1, 1);
@@ -112,7 +112,7 @@ class _TestingPageState extends State<TestingPage> {
                   child: Container(
                     alignment: Alignment.center,
                     child: const Text(
-                      'Do not press it !!',
+                      'Tracking thing here',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

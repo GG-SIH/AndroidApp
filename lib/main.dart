@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sal_maps/model/request.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/login.dart';
 import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
@@ -9,6 +10,8 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:sal_maps/screens/testingScreen.dart';
 import 'package:sal_maps/screens/tracking.dart';
 import 'package:audioplayers/audioplayers.dart';
+
+import 'model/directionsDirectory.dart';
 
 
 void main() async {
@@ -42,6 +45,9 @@ void main() async {
       ]
   );
   // await playLocalAsset();
+
+  bool x = await RequestService.requestService("Ambulance");
+  print(x);
   runApp(MyApp());
 }
 
@@ -72,9 +78,9 @@ class MyApp extends StatelessWidget {
       // home: LoginPage(),
       // home: MapScreen(),
       // home: SignInGoogle(),
-      // home: MapScreen(),
+      home: MapScreen(),
       // home: Tracking(),
-      home: TestingPage(),
+      // home: TestingPage(),
       // home: SplashScreen(),
     );
   }
