@@ -45,8 +45,8 @@ void main() async {
       ]
   );
   // await playLocalAsset();
-
-  bool x = await RequestService.requestService("Ambulance");
+  bool y = await RequestService.requestService("Ambulance");
+  Map<String,dynamic> x = await RequestService.confirmService("Ambulance");
   print(x);
   runApp(MyApp());
 }

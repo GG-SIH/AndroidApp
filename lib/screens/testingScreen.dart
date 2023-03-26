@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sal_maps/main.dart';
+import 'package:sal_maps/model/request.dart';
 
 import '../helper/notifications.dart';
 import '../model/directions.dart';
@@ -108,6 +109,33 @@ class _TestingPageState extends State<TestingPage> {
                     var mp1 = await DirectionRepository.userWithinRadius(cLat1, cLng1, 1);
                     print("check:"+mp.toString());
                     print("check:"+mp1.toString());
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Tracking thing here',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Container(
+                margin: const EdgeInsets.all(24),
+                width: 150,
+                height: 40,
+                decoration: BoxDecoration(color: Colors.black),
+                child: GestureDetector(
+                  onTap: () async {
+                    print('4th testing btn');
+                    bool serviceNeeded=true;
+                    while(!serviceNeeded) {
+                      serviceNeeded=await RequestService.confirmService("Ambulance");
+                    }
+                    // send ambulances location from here now using another function.
+                    // RequestService.
                   },
                   child: Container(
                     alignment: Alignment.center,

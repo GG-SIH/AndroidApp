@@ -50,7 +50,7 @@ class DirectionRepository {
     };
     print("Polyline sending="+polyline+":till here");
     var request = http.Request('GET', Uri.parse(
-        'https://salmaps-server.azurewebsites.net/api/SALApp/mainController'));
+        'https://salmaps-app.azurewebsites.net/api/SALApp/mainController'));
     request.body = json.encode({
       "polyline": polyline
       // "polyline": "{|lnAgpoxMV_Na@y@YYuDCk@@a@AQO_NHsF@sBG}@O_AQwASiAWaEg@_@TuE`G}@z@a@f@_@l@y@fCq@dBIHa@Ng@H[`@]r@c@d@sAbA_@XUNMpBKz@M`AWhCc@jEc@dFUtB]jDc@xDuAlK\\Xg@JAPi@j@q@n@{BvBiBnBaBlBaCxC}CtDcBpB?DGnBCj@a@~JbDTLsBHsAFgApAHJqBAEACHE`@?P?@g@@QDGLCdCL^BFB@ROzDGJQBo@E"
@@ -132,7 +132,7 @@ class DirectionRepository {
     } else {
       throw Exception("Server mp empty");
     }
-    var request = http.Request('GET', Uri.parse('https://salmaps-server.azurewebsites.net/api/SALApp/userLocatedWithinRadius'));
+    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/userLocatedWithinRadius'));
     request.body = json.encode({
       "currentLocation": {
         "lat": cLat,
@@ -167,7 +167,7 @@ class DirectionRepository {
     // var headers = {
     //   'Content-Type': 'application/json'
     // };
-    // var request = http.Request('GET', Uri.parse('https://salmaps-server.azurewebsites.net/api/SALApp/userLocatedWithinRadius'));
+    // var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/userLocatedWithinRadius'));
     // request.body = json.encode({
     //   "currentLocation": {
     //     "lat": 13.01454,

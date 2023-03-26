@@ -16,7 +16,7 @@ class RequestService {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('GET', Uri.parse('https://salmaps-server.azurewebsites.net/api/SALApp/confirmUser'));
+    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/confirmUser'));
     request.body = json.encode({
       "currentLocation": {
         "lat": cLat,
@@ -28,34 +28,52 @@ class RequestService {
     var streamedResponse = await request.send();
     var response = await http.Response.fromStream(streamedResponse);
     if(response.statusCode == 200) {
-      // response format is
-      /*
-      {
-    "message": "userLocatedWithinRadius is called123",
-    "userConfirmation":true
-}
-      *
-      * */
-
       print("response in fun checkNow() : " + response.body);
-      // bool x = response.body.toString()=="true";
-      // return x;
-      return true;
+      bool x = response.body.toString()=="true";
+      return x;
+      // return true;
     } else {
       print(response.reasonPhrase);
       return false;
     }
   }
+
   static Future<bool> confirmService(String service) async {
     print("In confirm Service function");
     // to be always run from ambulance side
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/confirmAmbulance'));
+
+    request.headers.addAll(headers);
+
+    var streamedResponse = await request.send();
+    var response = await http.Response.fromStream(streamedResponse);
+    if(response.statusCode == 200) {
+      final result = jsonDecode(response.body) as Map<String, dynamic>;
+      // print(result["message"]);
+      var userConfirmation = result["userConfirmation"];
+      // double latitude = result["currentLocation"]["lat"].toDouble();
+      // double longitude = result["currentLocation"]["lng"].toDouble();
+      print("userConfirmation ${userConfirmation}");
+      return userConfirmation;
+    } else {
+      print(response.reasonPhrase);
+      return false;
+    }
+  }
+
+  static Future<Map<String, dynamic>> sendServiceLocation() async {
+
+    print("In send Service locaiton function");
     Position pos = await GeoLocatorServices.determineCurrentPosition();
     double cLat = pos.latitude;
     double cLng = pos.longitude;
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('GET', Uri.parse('https://salmaps-server.azurewebsites.net/api/SALApp/confirmAmbulance'));
+    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/confirmUser'));
     request.body = json.encode({
       "currentLocation": {
         "lat": cLat,
@@ -64,29 +82,16 @@ class RequestService {
     });
     request.headers.addAll(headers);
 
-
     var streamedResponse = await request.send();
     var response = await http.Response.fromStream(streamedResponse);
     if(response.statusCode == 200) {
-      // response format is
-      /*
-      {
-    "message": "notify2 for ambulance is called123",
-    "userConfirmation": true,
-    "currentLocation": {
-        "lat": 13.03001,
-        "lng": 77.56595
-    }
-} using this current location to set the directions for driver.
-      *
-      * */
-
-      print("response in fun checkNow() : " + response.body);
-      bool x = response.body.toString()=="true";
-      return x;
+      final result = jsonDecode(response.body) as Map<String, dynamic>;
+      double eta = result["eta"];
+      print("eta ${eta}");
+      return result;
     } else {
       print(response.reasonPhrase);
-      return false;
+      return {"message":response.reasonPhrase};
     }
   }
 }
