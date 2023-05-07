@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart'as http;
+import 'package:sal_maps/helper/constants.dart';
 
 import '../services/getCurrentLocation.dart';
 
@@ -86,10 +87,13 @@ class RequestService {
 
     var streamedResponse = await request.send();
     var response = await http.Response.fromStream(streamedResponse);
+    print(response.body);
     if(response.statusCode == 200) {
       final result = jsonDecode(response.body) as Map<String, dynamic>;
-      double eta = result["eta"];
+      String eta = result["ETA"];
       print("eta ${eta}");
+      globalLoc["lat"] = result["currentLocation"]["lat"];
+      globalLoc["lng"] = result["currentLocation"]["lng"];
       return result;
     } else {
       print(response.reasonPhrase);

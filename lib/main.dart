@@ -50,7 +50,8 @@ void main() async {
   // await playLocalAsset();
   // bool y = await RequestService.requestService("Ambulance");
   // bool x = await RequestService.confirmService("Ambulance");
-  // bool x1 = await RequestService.confirmService("Ambulance");
+  // var x1 = await RequestService.sendServiceLocation();
+  // print(x1);
   // print(y.toString() + " " + x.toString()+" "+x1.toString());
   // MapUtils.openMap(13.0334, 77.5640);
   runApp(MyApp());

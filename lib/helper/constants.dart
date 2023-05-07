@@ -6,7 +6,7 @@ bool isAmbulanceDevice = false;
 
 bool ambulanceRequested = false;
 
-double eta = 0.0;
+String eta = "0.0";
 
 var globalLoc = {
   "lat": 12.9767,

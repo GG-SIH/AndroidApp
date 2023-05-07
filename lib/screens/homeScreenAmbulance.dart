@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sal_maps/helper/constants.dart';
 import 'package:sal_maps/helper/utilities.dart';
@@ -15,17 +17,28 @@ class HomePageAmbulance extends StatefulWidget {
 class _HomePageAmbulanceState extends State<HomePageAmbulance> {
 
   // ambulanceRequested = true;
+  @override
+  void initState()  {
+    // Timer mytimer = Timer.periodic(Duration(seconds: 10), (timer) {
+    //   runForever();
+    // });
+    runForever();
+  }
+
   runForever() async {
-    bool x;
-    while(true) {
+    bool x=false;
+    while(!x) {
       print("running");
       x = await RequestService.confirmService("Ambulance");
-      ambulanceRequested = true;
-      break;
+      ambulanceRequested = x;
+      if(x) {
+        break;
+      }
     }
     if(ambulanceRequested) {
       var result = await RequestService.sendServiceLocation();
-      eta = result["eta"];
+      eta = result["ETA"];
+      print("ETA Set");
     }
     setState(() { });
   }
@@ -123,7 +136,11 @@ class _HomePageAmbulanceState extends State<HomePageAmbulance> {
                     )
                   ],
                 ),
-              ):Container()
+              ):Container(
+                child: const Text(
+                  "No Current Request"
+                ),
+              )
             ],
           ),
         ),
