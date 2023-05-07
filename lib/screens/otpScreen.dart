@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:sal_maps/screens/homeScreenAmbulance.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
 
 import '../widgets/common_styles.dart';
@@ -82,7 +83,14 @@ class _OTPScreenState extends State<OTPScreen> {
             if(value.user!=null) {
               print("Logged In Line 41"),
               // TODO: Push->PushReplacement Done
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (c) => MapScreen()))
+              if(widget.phoneNumber=="+919934161540") {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (c) => HomePageAmbulance()))
+              } else
+                {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (c) => MapScreen()))
+                }
             }
           });
         },
@@ -155,7 +163,14 @@ class _OTPScreenState extends State<OTPScreen> {
                 print("Logged In Success");
               }
               // TODO: Push->PushReplacement
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MapScreen()));
+              if(widget.phoneNumber=="+919934161540") {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (c) => HomePageAmbulance()));
+              } else
+              {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (c) => MapScreen()));
+              }
             } else {
               if (kDebugMode) {
                 print("Not Logged In Sorry");

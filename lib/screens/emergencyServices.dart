@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sal_maps/helper/constants.dart';
 import 'package:sal_maps/screens/loadingSkeleton.dart';
 
 import '../model/request.dart';
@@ -159,15 +160,15 @@ enum ConfirmAction { Cancel, Accept}
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                    'The nearest $service will reach to you in :',
+                    'You want to contact The nearest $service ',
                   style: TextStyle(
                     fontSize: 18
                   ),
                 ),
-                Text(
-                  '14 min',
-                  style: TextStyle(fontSize: 24),
-                )
+                // Text(
+                //   '14 min',
+                //   style: TextStyle(fontSize: 24),
+                // )
               ],
             ),
           ),
@@ -182,7 +183,8 @@ enum ConfirmAction { Cancel, Accept}
             MaterialButton(
               color: Colors.green,
               child: const Text('Confirm'),
-              onPressed: () {
+              onPressed: () async {
+                await RequestService.requestService(service);
                 Navigator.of(context).pop(ConfirmAction.Accept);
 
                 // MaterialPageRoute(builder: (_)=>const LoadingSkeleton());
@@ -255,7 +257,7 @@ class Ambulance extends StatelessWidget {
                           fontSize: 18
                       ),),
                       SizedBox(height: 6,),
-                      Text('ETA: 14 min',style: TextStyle(
+                      Text('ETA: ${eta}',style: TextStyle(
                           fontSize: 18,
                         fontWeight: FontWeight.bold
                       ),),
@@ -265,7 +267,7 @@ class Ambulance extends StatelessWidget {
 
                         children: [
                           Text(
-                            'Phone Number: +91 1234567890',
+                            'Phone Number: +91 7090247628',
                             style: TextStyle(
                               fontSize: 18
                             ),

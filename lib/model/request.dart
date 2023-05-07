@@ -16,7 +16,7 @@ class RequestService {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/confirmUser'));
+    var request = http.Request('POST', Uri.parse('https://sal-maps-restful-api.onrender.com/api/routes/confirmUser'));
     request.body = json.encode({
       "currentLocation": {
         "lat": cLat,
@@ -24,6 +24,8 @@ class RequestService {
       },
     });
     request.headers.addAll(headers);
+
+    print(request.body.toString());
 
     var streamedResponse = await request.send();
     var response = await http.Response.fromStream(streamedResponse);
@@ -73,9 +75,9 @@ class RequestService {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/confirmUser'));
+    var request = http.Request('POST', Uri.parse('https://sal-maps-restful-api.onrender.com/api/routes/ambulanceReturn'));
     request.body = json.encode({
-      "currentLocation": {
+      "destination": {
         "lat": cLat,
         "lng": cLng
       },

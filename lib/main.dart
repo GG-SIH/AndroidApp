@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:sal_maps/helper/utilities.dart';
 import 'package:sal_maps/model/request.dart';
 import 'package:sal_maps/screens/emergencyServices.dart';
+import 'package:sal_maps/screens/homeScreenAmbulance.dart';
 import 'package:sal_maps/screens/login.dart';
 import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
@@ -47,10 +49,13 @@ void main() async {
   // DirectionRepository.getServerResponse("{|lnAgpoxMV_Na@y@YYuDCk@@a@AQO_NHsF@sBG}@O_AQwASiAWaEg@_@TuE`G}@z@a@f@_@l@y@fCq@dBIHa@Ng@H[`@]r@c@d@sAbA_@XUNMpBKz@M`AWhCc@jEc@dFUtB]jDc@xDuAlK\\Xg@JAPi@j@q@n@{BvBiBnBaBlBaCxC}CtDcBpB?DGnBCj@a@~JbDTLsBHsAFgApAHJqBAEACHE`@?P?@g@@QDGLCdCL^BFB@ROzDGJQBo@E");
   // await playLocalAsset();
   // bool y = await RequestService.requestService("Ambulance");
-  bool x = await RequestService.confirmService("Ambulance");
-  print(x);
-  // runApp(MyApp());
+  // bool x = await RequestService.confirmService("Ambulance");
+  // bool x1 = await RequestService.confirmService("Ambulance");
+  // print(y.toString() + " " + x.toString()+" "+x1.toString());
+  // MapUtils.openMap(13.0334, 77.5640);
+  runApp(MyApp());
 }
+
 
 Future<void> playLocalAsset() async {
   print("in audio");
@@ -79,10 +84,11 @@ class MyApp extends StatelessWidget {
       // home: LoginPage(),
       // home: MapScreen(),
       // home: SignInGoogle(),
-      home: MapScreen(),
+      // home: MapScreen(),
       // home: Tracking(),
       // home: TestingPage(),
-      // home: SplashScreen(),
+      home: SplashScreen(),
+      // home: HomePageAmbulance()
     );
   }
 }

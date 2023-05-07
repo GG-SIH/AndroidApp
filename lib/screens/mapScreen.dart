@@ -8,6 +8,7 @@ import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/searchScreen.dart';
 import 'package:sal_maps/screens/tracking.dart';
 
+import '../helper/constants.dart';
 import '../model/directions.dart';
 import '../model/directionsDirectory.dart';
 import '../services/getCurrentLocation.dart';
@@ -22,6 +23,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+
 
   bool _isLoading = true;
 
@@ -156,6 +158,8 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {});
   }
 
+  // void
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -219,12 +223,26 @@ class _MapScreenState extends State<MapScreen> {
                   IconButton(
                       onPressed: () async {
                         // print("Search Destination tapped");
-                        Map<String, dynamic> place =
-                        await LocationServices().getPlace(
-                            searchDestinationController.text);
-                        print(searchDestinationController.text);
-                        print("Place in search onTAP $place");
-                        _goToPlace(place); // camera animate not working cz ur camera updater is something else;
+                        if(isAmbulanceDevice) {
+                          Map<String, dynamic> place = {
+                            'geometry' : {
+                              'location' : {
+                                'lat' : globalLoc["lat"],
+                                'lng' : globalLoc["lng"]
+                              }
+                            }
+                          };
+                          print("Place in search onTAP Ambulance Side \n$place");
+                          _goToPlace(place);
+                        } else {
+                          Map<String, dynamic> place =
+                          await LocationServices().getPlace(
+                              searchDestinationController.text);
+                          print(searchDestinationController.text);
+                          print("Place in search onTAP User Side \n$place");
+                          _goToPlace(
+                              place); // camera animate not working cz ur camera updater is something else;
+                        }
                       },
                       icon: Icon(Icons.search))
                 ],

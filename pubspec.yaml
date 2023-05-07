@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^5.4.1
   uuid: ^3.0.6
   audioplayers: ^1.0.1
+  url_launcher: ^6.1.10
 #  audioplayer: ^0.8.1
   flutter:
     sdk: flutter

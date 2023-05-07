@@ -6,6 +6,8 @@ import 'package:sal_maps/screens/emergencyServices.dart';
 import 'package:sal_maps/screens/loginWithGoogleScreen.dart';
 import 'package:sal_maps/screens/mapScreen.dart';
 
+import '../helper/constants.dart';
+import '../model/request.dart';
 import '../widgets/common_styles.dart';
 import 'otpScreen.dart';
 
@@ -47,6 +49,24 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       print("Error Occurred");
       CommonStyles.snackBar(context, "Error Occurred!");
+    }
+  }
+
+  void forAmbulance() async {
+    String phoneNumber = phoneNumberController.text.toString();
+    if(phoneNumber=="9934161540") {
+      isAmbulanceDevice = true;
+      bool x = false;
+      while(!x) {
+        x = await RequestService.confirmService("Ambulance");
+        ambulanceRequested = true;
+        break;
+      }
+      if(ambulanceRequested) {
+        var result = await RequestService.sendServiceLocation();
+        eta = result["eta"];
+        // createAmbulanceNotification();
+      }
     }
   }
 
