@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:http/http.dart'as http;
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:sal_maps/helper/constants.dart';
 
 import 'directions.dart';
 
@@ -12,7 +13,7 @@ class DirectionRepository {
   static const String _baseUrl =
       "https://maps.googleapis.com/maps/api/directions/json?";
 
-  static const String _apiKey = "AIzaSyBcQSmBY1QhFLMcfDHsIFp5YEgdj6I_Ge8";
+  static const String _apiKey = apiKey;
 
   final Dio _dio;
   DirectionRepository({Dio? dio}) : _dio = dio??Dio();
@@ -49,8 +50,8 @@ class DirectionRepository {
       'Content-Type': 'application/json'
     };
     print("Polyline sending="+polyline+":till here");
-    var request = http.Request('GET', Uri.parse(
-        'https://salmaps-app.azurewebsites.net/api/SALApp/mainController'));
+    var request = http.Request('POST', Uri.parse(
+        'https://sal-maps-restful-api.onrender.com/api/routes/mainController/'));
     request.body = json.encode({
       "polyline": polyline
       // "polyline": "{|lnAgpoxMV_Na@y@YYuDCk@@a@AQO_NHsF@sBG}@O_AQwASiAWaEg@_@TuE`G}@z@a@f@_@l@y@fCq@dBIHa@Ng@H[`@]r@c@d@sAbA_@XUNMpBKz@M`AWhCc@jEc@dFUtB]jDc@xDuAlK\\Xg@JAPi@j@q@n@{BvBiBnBaBlBaCxC}CtDcBpB?DGnBCj@a@~JbDTLsBHsAFgApAHJqBAEACHE`@?P?@g@@QDGLCdCL^BFB@ROzDGJQBo@E"
@@ -132,7 +133,10 @@ class DirectionRepository {
     } else {
       throw Exception("Server mp empty");
     }
-    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/userLocatedWithinRadius'));
+    var request = http.Request('POST', Uri.parse(
+        'https://sal-maps-restful-api.onrender.com/api/routes/userLocatedWithinRadius/'
+        // 'https://salmaps-app.azurewebsites.net/api/SALApp/userLocatedWithinRadius'
+    ));
     request.body = json.encode({
       "currentLocation": {
         "lat": cLat,
@@ -143,7 +147,7 @@ class DirectionRepository {
         "lng": iLng
       },
       "radius": Server.mp["dynamic_radius"],
-      "max_radius": Server.mp["max_radius"]
+      "maxRadius": Server.mp["max_radius"]
     });
     request.headers.addAll(headers);
 

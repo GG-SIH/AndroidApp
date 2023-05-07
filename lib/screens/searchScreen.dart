@@ -41,10 +41,12 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void getSuggestion(String input) async {
+    print("Inside getSuggestion");
     String baseUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
     String request = '$baseUrl?input=$input&key=$apiKey&sessiontoken=$_sessionToken';
     var response = await http.get(Uri.parse(request));
     var data = response.body.toString();
+    print("data from autocomplete: "+data);
     if(response.statusCode==200) {
        if(mounted) {
          setState(() {

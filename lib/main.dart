@@ -44,11 +44,12 @@ void main() async {
         ),
       ]
   );
+  // DirectionRepository.getServerResponse("{|lnAgpoxMV_Na@y@YYuDCk@@a@AQO_NHsF@sBG}@O_AQwASiAWaEg@_@TuE`G}@z@a@f@_@l@y@fCq@dBIHa@Ng@H[`@]r@c@d@sAbA_@XUNMpBKz@M`AWhCc@jEc@dFUtB]jDc@xDuAlK\\Xg@JAPi@j@q@n@{BvBiBnBaBlBaCxC}CtDcBpB?DGnBCj@a@~JbDTLsBHsAFgApAHJqBAEACHE`@?P?@g@@QDGLCdCL^BFB@ROzDGJQBo@E");
   // await playLocalAsset();
-  bool y = await RequestService.requestService("Ambulance");
-  Map<String,dynamic> x = await RequestService.confirmService("Ambulance");
+  // bool y = await RequestService.requestService("Ambulance");
+  bool x = await RequestService.confirmService("Ambulance");
   print(x);
-  runApp(MyApp());
+  // runApp(MyApp());
 }
 
 Future<void> playLocalAsset() async {

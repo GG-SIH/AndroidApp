@@ -1,8 +1,10 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
+import 'package:sal_maps/helper/constants.dart';
+
 class LocationServices {
-  static String _apiKey = "AIzaSyBcQSmBY1QhFLMcfDHsIFp5YEgdj6I_Ge8";
+  static const String _apiKey = apiKey;
 
   Future<String> getPlaceId(String place) async {
     final String _baseURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=$place&inputtype=textquery&key=$_apiKey";

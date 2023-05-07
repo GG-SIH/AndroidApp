@@ -121,6 +121,8 @@ class _MapScreenState extends State<MapScreen> {
     if(searchSourceController.text.isNotEmpty) {
       // _origin = await LocationServices().getPlace(searchDestinationController.text);
       Map<String, dynamic> sourcePlace= await LocationServices().getPlace(searchSourceController.text);
+
+      print(sourcePlace);
       final double sLat = sourcePlace['geometry']['location']['lat'];
       final double sLng = sourcePlace['geometry']['location']['lng'];
       LatLng sourcePos = new LatLng(sLat, sLng);
@@ -183,7 +185,9 @@ class _MapScreenState extends State<MapScreen> {
                           Navigator.push(context, MaterialPageRoute(builder: (_)=>SearchScreen(s: "source",c: searchSourceController,)));
                         },
                         onChanged: (value) {
-                          print(value);
+                          if (kDebugMode) {
+                            print(value);
+                          }
                         },
                         // decoration: CommonStyles.textFieldStyle("Enter Destination"),
                       )),
@@ -218,7 +222,8 @@ class _MapScreenState extends State<MapScreen> {
                         Map<String, dynamic> place =
                         await LocationServices().getPlace(
                             searchDestinationController.text);
-                        // print("Place in search onTAP $place");
+                        print(searchDestinationController.text);
+                        print("Place in search onTAP $place");
                         _goToPlace(place); // camera animate not working cz ur camera updater is something else;
                       },
                       icon: Icon(Icons.search))
@@ -285,12 +290,12 @@ class _MapScreenState extends State<MapScreen> {
                         // _origin = null;
                         // _destination = null;
                         // _currentLocation = null;
-                        // // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
+                        // Navigator.push(context, MaterialPageRoute(builder: (c)=>DriverPage(destinationPlace: searchDestinationController.text,)));
                         // Navigator.pushReplacement(context,
                         //     MaterialPageRoute(builder: (_) => EmergencyServices()));
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (_) => Tracking()));
-                        CommonStyles.snackBar(context, "Not functional yet");
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Tracking()));
+                        // CommonStyles.snackBar(context, "Not functional yet");
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Not functional Yet!!'))
                         );

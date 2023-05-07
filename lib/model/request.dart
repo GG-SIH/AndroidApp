@@ -44,7 +44,7 @@ class RequestService {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('GET', Uri.parse('https://salmaps-app.azurewebsites.net/api/SALApp/confirmAmbulance'));
+    var request = http.Request('POST', Uri.parse('https://sal-maps-restful-api.onrender.com/api/routes/confirmAmbulance'));
 
     request.headers.addAll(headers);
 
