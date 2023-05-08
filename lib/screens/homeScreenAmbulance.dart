@@ -92,6 +92,8 @@ class _HomePageAmbulanceState extends State<HomePageAmbulance> {
                         GestureDetector(
                           onTap: () {
                             print('cancel tapped');
+                            ambulanceRequested = false;
+                            setState(() { });
                           },
                           child: Container(
                             height: 40,
