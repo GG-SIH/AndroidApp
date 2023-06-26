@@ -238,7 +238,7 @@ class Ambulance extends StatelessWidget {
                 ),),
                 SizedBox(height: 8,),
                 Container(
-                    child: Image.asset('assets/images/eta_new.png'),
+                    child: Image.asset('assets/images/eta_new.jpg'),
                   padding: EdgeInsets.all(12),
                 ),
                 Container(
